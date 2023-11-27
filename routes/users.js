@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 var passportLocalMongoose = require('passport-local-mongoose');
 
-mongoose.connect("mongodb://127.0.0.1:27017/rent");
+// mongoose.connect("mongodb://127.0.0.1:27017/rent");
+mongoose.connect(process.env.MONGO_URI)
+
+
 
 var userSchema = mongoose.Schema({
   email: {
