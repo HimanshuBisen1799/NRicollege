@@ -13,7 +13,7 @@
 
 <body>
   <div id="main">
-    <div id="nav">
+    <!-- <div id="nav">
       <ul class="nav justify-content-end">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/index">Home</a>
@@ -32,7 +32,8 @@
         </li>
 
       </ul>
-    </div>
+    </div> -->
+    <% include ./navbar/nav.ejs %>
     <h2 class="mt-5 text-center fw-semibold">POST YOUR AD</h2>
     <form class="container mt-5 mb-5" style="width: 40vw;" action="/uploadpost" method="post" enctype="multipart/form-data">
       <h5 class="ms-2">Type </h5>

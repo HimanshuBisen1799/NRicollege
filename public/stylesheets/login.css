@@ -1,0 +1,196 @@
+
+  form{
+      margin-left: 5vw;
+  }
+ input{
+  width: 35vw;
+  height: 8vh;
+  border-radius: 15px;
+  padding: 0 1vw;
+  color: black;
+  font-size: 1.5vw;
+  border: 1px solid #000;
+ }
+ h5{
+  margin-left: 24vw;
+  margin-top: 5vh;
+ }
+ .btn{
+   margin-left: 10vw;
+   background-color: rgb(90, 186, 199);
+   padding: 1vw 1vw;
+   border-radius: 15px;
+ }
+ .left{
+  height: 100vh;
+  background-color: rgba(92, 221, 131, 0.915);
+  width: 50vw;
+
+ }
+ .colum{
+  height: 14vw;
+  width: 14vw;
+  background-color: #fff;
+  border-radius: 100%;
+  position: relative;
+  border: 2px solid #000;
+  overflow: hidden;
+ }
+ .colum>img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+ }
+/* styles.css */
+
+#main {
+    display: flex;
+    width: 100%;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mt-5 {
+    margin-top: 5px;
+}
+
+.colum {
+    margin-top: 5px;
+}
+
+.colum img {
+    width: 100%;
+}
+
+h3.mt-4 {
+    margin-top: 4px;
+}
+
+h6.mt-4 {
+    margin-top: 4px;
+    text-align: center;
+}
+
+.right {
+    width: 50%;
+    padding: 5px;
+}
+
+h2.text-center.fw-semibold {
+    text-align: center;
+    font-weight: bold;
+}
+
+form {
+    margin-top: 4px;
+    margin-bottom: 3px;
+}
+
+input[type="text"],
+input[type="password"] {
+    margin-top: 4px;
+}
+
+button.btn.mt-5 {
+    margin-top: 5px;
+}
+
+h5 a.text-body.text-decoration-none {
+    color: inherit;
+    text-decoration: none;
+}
+
+ @media only screen and (min-width: 576px) {
+    form {
+      margin-left: 1vw;
+    }
+  
+    input {
+      width: 90vw;
+    }
+  
+    h5 {
+      margin-left: 2vw;
+    }
+  
+    .btn {
+      margin-left: 1vw;
+    }
+  
+  /* styles.css */
+
+#main {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+    width: 100%;
+}
+
+.mt-5 {
+    margin-top: 5px;
+}
+
+.colum {
+    margin-top: 5px;
+}
+
+.colum img {
+    width: 100%; /* Assuming you want the image to take the full width of its container */
+}
+
+h3.mt-4 {
+    margin-top: 4px;
+}
+
+h6.mt-4 {
+    margin-top: 4px;
+    text-align: center;
+}
+
+.right {
+    width: 70%;
+    padding: 5px;
+}
+
+h2.text-center.fw-semibold {
+    text-align: center;
+    font-weight: bold;
+    font-size: 5vw;
+}
+
+form {
+    margin-top: 4px;
+    margin-bottom: 3px;
+}
+
+input[type="text"],
+input[type="password"] {
+    margin-top: 30px;
+    padding: auto;
+    text-align: center;
+   
+}
+
+button.btn.mt-5 {
+    margin-top: 5px;
+}
+
+h5 a.text-body.text-decoration-none {
+    color: inherit;
+    text-decoration: none;
+    font-size: 3vw;
+    background-color: rgb(154, 224, 140);
+    padding: 3px 5px;
+}
+  }
