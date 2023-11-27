@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
+  }
+  html,body{
+    width: 100vw;
+  }
+  #main{
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  #nav{
+    width: 100vw;
+    padding: 1vw 2vw;
+    box-shadow: 5px 5px 5px rgb(82, 75, 75);
+  }
+  #nav li>a{
+    color: #000;
+    font-size: 1.5vw;
+  }
+  select,input,textarea,button{
+    border-radius: 1vw;
+    border: 1px solid #000;
+  }
+  form h5{
+    font-size: 1.7vw;
+  }
+  form>button{
+    background-color:#00b4cc;
+    color: #000;
+    font-size: 1.5vw;
+    text-align: center;
+    margin-left: 14vw;
+    padding: 1vw 3vw;
+  }
+
+  #img-div{
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+    position: relative;
+  }
+
+  #img-div .img{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding: 0 4vw;
+    font-size: 1.5vw;
+    height: 15vh;
+    width: 10vw;
+    border: 2px solid #000;
+  }
+  .img>input{
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    height: 15vh;
+    width: 10vw;
+  }
+
+  

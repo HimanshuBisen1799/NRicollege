@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Search Rooms</title>
+  <link rel="stylesheet" href="/stylesheets/findroom.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+  <div id="main">
+    <div id="nav">
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/index">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/findroom">Find Rooms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/listroom">List Ads</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/save">Save Ads</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" href="/profile">Hello <%= loggedInUser.username%></a>
+        </li>
+
+      </ul>
+    </div>
+
+
+    <div class="mt-5 w-50 m-auto">
+      <form id="citySearchForm" class="d-flex" role="search">
+        <input class="form-control me-2 border-3" type="search" id="citySearchInput" placeholder="Search Your City"
+          aria-label="Search">
+        <button class="btn btn-outline-success" onclick="searchByCity()" type="button">Search</button>
+      </form>
+    </div>
+
+
+    <h2 class="mt-4 text-center fw-semibold">All Rooms</h2>
+    <p class="not"></p>
+    <div class="rooms p-3 m-3 d-flex flex-wrap gap-5">
+      
+      <% if (allUsers.length > 0) { %>
+      <% allPosts.forEach((user) => { %>
+      <% user.posts.forEach((posts) => { %>
+      <div class="card">
+        <img
+          src="/images/postUploads/<%= posts.images[0] %>"
+          class="card-img-top" style="height:13vmax; width:20vmax;" alt="...">
+        <div class="card-body">
+          <div class="card-subtitle d-flex flex-wrap justify-content-between ">
+            <h5 class="card-title fw-semibold"><%= posts.type %></h5>
+            <h5 class="card-title">💸 <b><%= posts.price %></b></h5>
+          </div>
+          <!-- <p class="card-subtitle"><%= posts.description %></p> -->
+          <p class="card-text d-flex align-items-center gap-2"><i class="ri-map-pin-line"></i><%= posts.area %></p>
+          <div class="d-flex flex-wrap align-items-center justify-content-between">
+          
+            <h5 class="city card-subtitle fw-bold"><%= posts.city %></h5>
+            <button class="dets btn btn-success"><a style="text-decoration: none; color: #fff;"
+                href="/card/<%= posts._id %>">View Details </a></button>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+      <% }) %>
+      <% } else { %>
+      <p style="margin-top: 30px; margin-left: 10px"><b><%= loggedInUser.username %></b> No one has posted any ads.. 😒</p>
+      <% } %>
+    </div>
+
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+
+  <script>
+    const seachinput = document.getElementById("citySearchInput");
+    const container = document.querySelector(".rooms");
+    const cards = container.getElementsByClassName("card");
+    const not = document.querySelector(".not");
+
+  
+    function searchByCity() {
+      const searchText = seachinput.value.toLowerCase();
+
+      for(let i=0;i<cards.length;i++ ){
+        const card = cards[i];
+        const cityElement = card.querySelector('.city'); // Select the element with class 'city' inside the card
+        const cityName = cityElement.textContent.toLowerCase(); 
+
+        if (cityName.includes(searchText)) {
+        card.style.display = ''; // Show the card
+      } else {
+        card.style.display = "none";
+         // Hide the card
+      }
+      }
+    }
+  
+  
+  </script> 
+ 
+
+  
+</body>
+
+</html>

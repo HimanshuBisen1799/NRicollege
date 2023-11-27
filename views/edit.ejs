@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit page</h1>
+    <form action="/edit-profile/<%= loggedInUser._id %>" method="post" enctype="multipart/form-data">
+        <input type="text" placeholder="username" name="username">
+        <input type="number" placeholder="Contact" name="number">
+        <input type="text " placeholder="city" name="city">
+        <input type="text" placeholder="gender" name="gender">
+        <input type="file" placeholder="profile picture" name="profile">
+        <button type="submit">Update Profile</button>
+    </form>
+</body>
+</html>

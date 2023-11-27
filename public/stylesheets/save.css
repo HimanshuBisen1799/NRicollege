@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
+  }
+  html,body{
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  #main{
+    width: 100vw;
+  }
+  #nav{
+    width: 100vw;
+    padding: 1vw 2vw;
+    box-shadow: 5px 5px 5px rgb(82, 75, 75);
+  }
+  #nav li>a{
+    color: #000;
+    font-size: 1.5vw;
+  }
+ 

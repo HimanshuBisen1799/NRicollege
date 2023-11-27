@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
+  }
+  html,body{
+    width: 100vw;
+  }
+  #main{
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  #nav{
+    width: 100vw;
+    padding: 1vw 2vw;
+    box-shadow: 5px 5px 5px rgb(82, 75, 75);
+  }
+  #nav li>a{
+    color: #000;
+    font-size: 1.5vw;
+  }
+  .card{
+    width: 20vmax;
+    display: block;
+    overflow: hidden;
+  }
+  .card>img{
+    transition: all cubic-bezier(0.19, 1, 0.22, 1)1s;
+
+  }

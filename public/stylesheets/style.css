@@ -1,0 +1,60 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: gilroy;
+}
+html,body{
+  width: 100vw;
+  overflow-x: hidden;
+}
+#main{
+  width: 100vw;
+}
+#nav{
+  width: 100vw;
+  padding: 1vw 2vw;
+  box-shadow: 5px 5px 5px rgb(82, 75, 75);
+}
+#nav li>a{
+  color: #000;
+  font-size: 1.5vw;
+}
+#wrap{
+  width: 100vw;
+  display: flex;
+}
+#left{
+  width: 50vw;
+  text-align: center;
+}
+#left h1{
+  margin-top: 15vh;
+  font-weight: 600;
+}
+#left p{
+  padding: 2vw 4vw;
+}
+button{
+  text-align: center;
+}
+
+#right{
+  width: 50vw;
+  margin-top: 3vh;
+}
+#right img{
+  width: 85%;
+  object-fit: cover;
+}
+#work{
+  width: 100vw;
+}
+.card>i{
+  font-size: 2.5vw;
+  color: #00B4CC;
+}
+.card h3{
+  font-size: 2vw;
+  font-weight: 600;
+}
