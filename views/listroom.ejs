@@ -9,31 +9,36 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <link rel='stylesheet' href='/stylesheets/listroom.css' />
+  <link rel='stylesheet' href='/stylesheets/nav.css' />
 </head>
 
 <body>
   <div id="main">
-    <!-- <div id="nav">
-      <ul class="nav justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/index">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/findroom">Find Rooms</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/listroom">List Ads</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="/save">Save Ads</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-semibold" href="/profile">Hello <%= loggedInUser.username%></a>
-        </li>
+    <div id="nav">
+      <i id="mobile-menu-button" class="ri-menu-line"></i>
+       <img  id="logo" src="/images/postUploads/logo/logo.jpg" alt="">
+      
+     <ul class="nav justify-content-end">
+       <li class="nav-item">
+         <a class="nav-link active" aria-current="page" href="/index">Home</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" href="/findroom">Find Rooms</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" href="/listroom">List Ads</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link " href="/save">Save Ads</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link fw-semibold" href="/profile">Hello <%= loggedInUser.username%></a>
+       </li>
 
-      </ul>
-    </div> -->
-    <% include ./navbar/nav.ejs %>
+     </ul>
+   </div>
+  
+    <!-- <% include ./navbar/nav.ejs %> -->
     <h2 class="mt-5 text-center fw-semibold">POST YOUR AD</h2>
     <form class="container mt-5 mb-5" style="width: 40vw;" action="/uploadpost" method="post" enctype="multipart/form-data">
       <h5 class="ms-2">Type </h5>
