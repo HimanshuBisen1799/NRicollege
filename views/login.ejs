@@ -27,6 +27,7 @@
   margin-left: 23vw;
  }
  .btn{
+  margin-top: 23vw;
    margin-left: 10vw;
    background-color: rgb(90, 186, 199);
    padding: 1vw 1vw;
@@ -59,19 +60,28 @@
  }
  .right{
   width: 100%;
+  margin-left: 0vw; 
+  
 }
  @media screen and (max-width: 980px) {
 #main{
   flex-direction: column;
   height: 32vh;
 }
+input{
+  width: 35vw;
+  height: 2vh;
+}
 .left{
   width: 100vh;
 }
 .right{
-  width: 80%;
-  padding: 0.6vw;
+  width: 69%;
+ 
+  /* background-color: aqua; */
+  /* padding: 0.6vw; */
   text-align: center;
+  margin-left: 30vw;
 }
 }
 </style>
@@ -88,9 +98,9 @@
             you can easily find rental <br>
             rooms in different cities.</h6>
     </div>
-    <div class="right w-50 p-5">
+    <div class="right p-6">
         <h2 class="text-center fw-semibold">Login </h2>
-        <form action="/login" method="post" class="mt-4 mb-3">
+        <form action="/login" method="post" class="mt-4 mb-3  ">
             <input type="text" placeholder="Username" name="username">
             <input type="password" placeholder="Password" name="password">
             <button class="btn mt-5">Let's Find Rooms</button>
