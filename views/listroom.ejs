@@ -73,7 +73,7 @@
 
       <h5 class="mt-4 ms-2">Select image of your home</h5>
       <div id="img-div">
-        <div class="img"><small>Front image </small><i class="ri-add-circle-line"></i><input type="file" name="images" onchange="handleImageChange(this)"></div>
+        <div class="img"><i class="ri-add-circle-line"></i><input type="file" name="images" onchange="handleImageChange(this)"></div>
         <div class="img"><i class="ri-add-circle-line"></i><input type="file" name="images" onchange="handleImageChange(this)"></div>
         <div class="img"><i class="ri-add-circle-line"></i><input type="file" name="images" onchange="handleImageChange(this)"></div>
         <div class="img"><i class="ri-add-circle-line"></i><input type="file" name="images" onchange="handleImageChange(this)"></div>
@@ -85,7 +85,7 @@
 
 
 
-
+    <% include ./footer/footer.ejs %>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
@@ -95,7 +95,65 @@
         function handleImageChange(index) {
         
         }
-    </script>
+       
+    function handleImageChange(input) {
+        const file = input.files[0];
+        const allowedFormats = ['image/jpeg', 'image/jpg'];
+
+        if (file) {
+            if (allowedFormats.includes(file.type)) {
+                // Image uploaded successfully
+                console.log('Image uploaded successfully:', file.name);
+            } else {
+                // Display error message for invalid format
+                alert('Please upload only JPG format images.');
+                // Clear the file input
+                input.value = '';
+            }
+        }
+    }
+</script>
+
+<script>
+  function handleImageChange(input) {
+      const file = input.files[0];
+      const allowedFormats = ['image/jpeg', 'image/jpg'];
+
+      const imgDiv = document.getElementById('img-div');
+
+      if (file) {
+          if (allowedFormats.includes(file.type)) {
+              // Image uploaded successfully
+              console.log('Image uploaded successfully:', file.name);
+
+              // Create a success message for the specific image
+              const successDiv = document.createElement('div');
+              successDiv.textContent = 'Image uploaded successfully!';
+              successDiv.style.color = 'green';
+
+              // Change the background color of the corresponding image div
+              const currentImgDiv = input.parentNode;
+              currentImgDiv.style.backgroundColor = '#e6ffe6'; // Light green background
+
+              // Remove the <i> tag from the corresponding image div
+              const iconTag = currentImgDiv.querySelector('i');
+              if (iconTag) {
+                  currentImgDiv.removeChild(iconTag);
+              }
+
+              // Append the success message to the corresponding image div
+              currentImgDiv.appendChild(successDiv);
+          } else {
+              // Display error message for invalid format
+              alert('Please upload only JPG format images.');
+              // Clear the file input
+              input.value = '';
+          }
+      }
+  }
+</script>
+
+  
 </body>
 
 </html>
