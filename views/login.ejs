@@ -10,7 +10,71 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/login.css' />
 </head>
-
+<style>
+  form{
+      margin-left: 5vw;
+  }
+ input{
+  width: 35vw;
+  height: 8vh;
+  border-radius: 15px;
+  padding: 0 1vw;
+  color: black;
+  font-size: 1.5vw;
+  border: 1px solid #000;
+ }
+ h5{
+  margin-left: 23vw;
+ }
+ .btn{
+   margin-left: 10vw;
+   background-color: rgb(90, 186, 199);
+   padding: 1vw 1vw;
+   border-radius: 15px;
+ }
+ .left{
+  background-color: rgba(92, 221, 131, 0.915);
+  height: 100%;
+ 
+ }
+ .colum{
+  height: 14vw;
+  width: 14vw;
+  background-color: #fff;
+  border-radius: 100%;
+  position: relative;
+  border: 2px solid #000;
+  overflow: hidden;
+ }
+ .colum>img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+ }
+ #main{
+  width: 100%;
+  flex-direction: row;
+  height: 100vh;
+ 
+ }
+ .right{
+  width: 100%;
+}
+ @media screen and (max-width: 980px) {
+#main{
+  flex-direction: column;
+  height: 32vh;
+}
+.left{
+  width: 100vh;
+}
+.right{
+  width: 80%;
+  padding: 0.6vw;
+  text-align: center;
+}
+}
+</style>
 <body>
 
   <div id="main" class="d-flex w-100">

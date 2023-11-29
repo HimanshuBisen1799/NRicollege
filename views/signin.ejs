@@ -10,7 +10,7 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/login.css' />
 </head>
-<!-- <style>
+<style>
     form{
         margin-left: 5vw;
     }
@@ -34,6 +34,8 @@
    }
    .left{
     background-color: rgba(92, 221, 131, 0.915);
+    height: 100%;
+   
    }
    .colum{
     height: 14vw;
@@ -49,11 +51,34 @@
     width: 100%;
     object-fit: cover;
    }
-</style> -->
+   #main{
+    width: 100%;
+    flex-direction: row;
+    height: 100vh;
+   
+   }
+   .right{
+    width: 100%;
+  }
+   @media screen and (max-width: 980px) {
+  #main{
+    flex-direction: column;
+    height: 32vh;
+  }
+  .left{
+    width: 100vh;
+  }
+  .right{
+    width: 80%;
+    padding: 0.6vw;
+    text-align: center;
+  }
+}
+</style>
 
 <body>
-  <div id="main" class=" d-flex w-100">
-    <div class="left w-50 d-flex flex-column align-items-center">
+  <div id="main" class=" d-flex  w-100">
+    <div class="left w-100 d-flex flex-column align-items-center">
         <div class="mt-5"></div>
        <div class="colum mt-5">
         <img src="https://i.pinimg.com/564x/b3/78/60/b378603d05990193325f39834af4d681.jpg" alt="">
@@ -63,13 +88,13 @@
         you can easily find the rental <br>
         rooms in different city.</h6>
     </div>
-    <div class="right w-50 p-5">
+    <div class="right  p-5">
        <h2 class="text-center fw-semibold">Sign Up </h2>
-       <form action="/register" method="post"  class="mt-4 mb-3 " >
-          <input class="mt-4" type="text" placeholder="Username" name="username">
-          <input class="mt-4" type="email" placeholder="Email" name="email">
-          <input class="mt-4" type="number" placeholder="Mobile Number" name="number">
-          <input class="mt-4" type="password" placeholder="Password" name="password">
+       <form action="/register" method="post"  class="mt-3 mb-3 " >
+          <input class="mt-2" type="text" placeholder="Username" name="username">
+          <input class="mt-2" type="email" placeholder="Email" name="email">
+          <input class="mt-2" type="number" placeholder="Mobile Number" name="number">
+          <input class="mt-2" type="password" placeholder="Password" name="password">
           <button class="btn  mt-5">Let's Find Rooms</button>
        </form>
 
