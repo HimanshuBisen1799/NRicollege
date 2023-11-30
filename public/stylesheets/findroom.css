@@ -30,3 +30,75 @@
     transition: all cubic-bezier(0.19, 1, 0.22, 1)1s;
 
   }
+
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
+  }
+  
+  html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #main {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  #nav {
+    padding: 1rem 2rem;
+    box-shadow: 5px 5px 5px rgb(82, 75, 75);
+  }
+  
+  #nav li > a {
+    color: #000;
+    font-size: 1rem;
+  }
+  
+  .card {
+    width: 100%; /* Take full width */
+    max-width: 20rem; /* Limit max width if needed */
+    display: block;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  
+  .card > img {
+    width: 100%;
+    height: auto;
+    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  }
+  
+  .mt-5 {
+    margin-top: 1.25rem;
+  }
+  
+  @media (min-width: 576px) {
+    .mt-5 {
+      margin-top: 3rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .card {
+      max-width: 25rem;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .card {
+      max-width: 30rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .card {
+      max-width: 35rem;
+    }
+  }
+  

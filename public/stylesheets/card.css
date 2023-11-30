@@ -46,3 +46,74 @@
     width: 50vw;
     margin-left: 3vw;
   }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
+  }
+  
+  html, body {
+    width: 100%;
+  }
+  
+  #main {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  #nav {
+    padding: 1rem 2rem;
+    box-shadow: 5px 5px 5px rgb(82, 75, 75);
+  }
+  
+  #nav li > a {
+    color: #000;
+    font-size: 1.5rem;
+  }
+  
+  #details {
+    flex-direction: column; /* Change to column layout for mobile */
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem; /* Add padding for better spacing on small screens */
+  }
+  
+  #carouselExampleRide {
+    margin-top: 2rem;
+    width: 100%; /* Full width for mobile */
+  }
+  
+  .carousel-item > img {
+    height: auto; /* Adjust height for mobile */
+    max-width: 100%; /* Ensure images don't overflow container */
+  }
+  
+  #right {
+    width: 100%;
+    margin: 2rem 0;
+  }
+  
+  @media (min-width: 768px) {
+    /* Apply styles for screens larger than 768px wide (tablets and desktops) */
+  
+    #details {
+      flex-direction: row; /* Switch back to row layout for larger screens */
+    }
+  
+    #carouselExampleRide {
+      width: 65%; /* Adjust width for larger screens */
+    }
+  
+    .carousel-item > img {
+      height: 60vh;
+      width: 100%; /* Full width for larger screens */
+      object-fit: cover;
+    }
+  
+    #right {
+      width: 50%;
+      margin-left: 3%;
+    }
+  }
+  
