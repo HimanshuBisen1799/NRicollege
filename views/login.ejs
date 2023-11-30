@@ -87,6 +87,38 @@ input{
 }
 
 }
+@media screen and (max-width: 980px) {
+  form {
+    margin-left: 0;
+  }
+
+  input {
+    width: 80vw;
+    height: 4.3vh;
+  }
+
+  h5 {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .btn {
+  
+    margin-left: 0;
+    
+  }
+
+  .left {
+    width: 100%;
+  }
+
+  .right {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
 </style>
 <body>
 
@@ -106,7 +138,8 @@ input{
         <form action="/login" method="post" class="mt-4 mb-3  ">
             <input type="text" placeholder="Username" name="username">
             <input type="password" placeholder="Password" name="password">
-            <button class="btn mt-5">Let's Find Rooms</button>
+            <br> 
+            <button class="btn mt-5 " >Let's Find Rooms</button>
         </form>
         <h5><a class="text-body text-decoration-none" style="font-size: 3vh ;" href="/">New user register first</a></h5>
     </div>
