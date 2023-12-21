@@ -53,6 +53,31 @@
     gap: 30vw;
     border-radius: 2vw;
   }
+  @media only screen and (max-width: 768px) {
+  #nav {
+    padding: 1vw;
+  }
+
+  #nav li>a {
+    font-size: 3vw;
+  }
+
+  #profile {
+    height: 20vw;
+    width: 20vw;
+  }
+
+  .container {
+    gap: 5vw;
+    border-radius: 1vw;
+  }
+
+  #ads .left {
+    padding: 2vw;
+  }
+
+  /* Add more styles as needed for smaller screens */
+}
 </style>
 
 <body>
@@ -113,7 +138,7 @@
 
           <% if(loggedInUser.posts.length>0){ %>
             <% loggedInUser.posts.reverse().forEach(function(posts){ %>
-              <div class="card mt-3 d-flex " style="width: 18vmax;">
+              <div class="card mt-3 d-flex " style="width: 25vmax;">
 
                 <a href="/card/<%= posts._id %>">
                   <img src="/images/postUploads/<%= posts.images[1] %>" style="height:10vmax; width:18vmax;"

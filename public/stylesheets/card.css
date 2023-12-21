@@ -27,6 +27,7 @@
     display: flex;
     align-items: center;
     gap: 3vw;
+    flex-direction: column;
     
   }
   #carouselExampleRide{
@@ -73,7 +74,7 @@
   }
   
   #details {
-    flex-direction: column; /* Change to column layout for mobile */
+    flex-direction: row; /* Change to column layout for mobile */
     align-items: center;
     gap: 2rem;
     padding: 2rem; /* Add padding for better spacing on small screens */
@@ -94,26 +95,26 @@
     margin: 2rem 0;
   }
   
-  @media (min-width: 768px) {
-    /* Apply styles for screens larger than 768px wide (tablets and desktops) */
-  
-    #details {
-      flex-direction: row; /* Switch back to row layout for larger screens */
-    }
-  
-    #carouselExampleRide {
-      width: 65%; /* Adjust width for larger screens */
-    }
-  
-    .carousel-item > img {
-      height: 60vh;
-      width: 100%; /* Full width for larger screens */
-      object-fit: cover;
-    }
-  
-    #right {
-      width: 50%;
-      margin-left: 3%;
-    }
+/* Media Queries for Mobile Devices */
+@media (max-width: 576px) {
+  #details {
+    display: flex;
+    flex-direction: column-reverse;
+   
   }
-  
+
+  #carouselExampleRide {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .carousel-item > img {
+    height: auto;
+    max-width: 100%;
+  }
+
+  #right {
+    width: 100%;
+    margin-left: 0; /* Remove margin for full width */
+  }
+}
