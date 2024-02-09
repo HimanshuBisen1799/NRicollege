@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: gilroy;
+  
 }
 html,body{
   width: 100vw;
@@ -23,7 +24,16 @@ html,body{
 #wrap{
   width: 100vw;
   display: flex;
+
 }
+.home1{
+  /* background-color: #7c8788; */
+  /* background-color: #9ba7b8; */
+  height: 90vh;
+  padding: 5vh;
+}
+
+
 #left{
   width: 50vw;
   text-align: center;
@@ -31,9 +41,11 @@ html,body{
 #left h1{
   margin-top: 15vh;
   font-weight: 600;
+  color: #000;
 }
 #left p{
   padding: 2vw 4vw;
+  color: #03555f;
 }
 button{
   text-align: center;
@@ -57,4 +69,63 @@ button{
 .card h3{
   font-size: 2vw;
   font-weight: 600;
+}
+
+@media only screen and (max-width: 768px) {
+  /* Your mobile-specific styles here */
+.home1{
+  height: 60vh;
+}
+#right img{
+  width: 100%;
+  object-fit: cover;
+}
+
+#left{
+  width: 100vw;
+  text-align: center;
+  /* background-color: #000; */
+  background-image: url("../logo/home.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  
+}
+#left h1{
+  margin-top: 1vh;
+  font-weight: 600;
+  color: #335f3d;
+  background-color: rgba(240, 248, 255, 0.555);
+  text-shadow: 1px 1px 1px solid black;
+  border: #57ba117a 0.1px solid;
+}
+#left p{
+  padding: 6vw 4vw;
+  color: rgb(78, 75, 69);
+  background-color: rgba(240, 248, 255, 0.555);
+}
+button{
+  text-align: center;
+}
+
+#right{
+  width: 0vw;
+  margin-top: 3vh;
+}
+#right img{
+  width: 85%;
+  object-fit: cover;
+}
+#work{
+  width: 100vw;
+}
+.card>i{
+  font-size: 2.5vw;
+  color: #00B4CC;
+}
+.card h3{
+  font-size: 2vw;
+  font-weight: 600;
+}
+
 }
