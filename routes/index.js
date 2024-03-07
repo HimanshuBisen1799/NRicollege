@@ -8,12 +8,22 @@ const userModel = require("./users.js");
 const fs = require('fs');
 const path = require("path");
 const cookieParser = require('cookie-parser');
-const sendtoken = require("../utils/SendToken.js");
+// const sendtoken = require("../utils/SendToken.js");
 
 const localStrategy = require("passport-local");
 passport.use(new localStrategy(userModel.authenticate()));
 
-// Multer code for upload images
+const cloudinary = require('cloudinary').v2;
+const sendtoken = require("../utils/SendToken.js");
+
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.YOUR_CLOUD_NAME,
+  api_key: process.env.YOUR_API_KEY,
+  api_secret: process.env.YOUR_API_SECRET
+});
+
+// Multer configuration for uploading images
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './public/images/postUploads')
@@ -23,11 +33,58 @@ const storage = multer.diskStorage({
       const fn = buff.toString("hex") + path.extname(file.originalname)
       cb(null, fn);
     })
-
   }
-})
+});
 
-const upload = multer({ storage: storage, fileFilter: fileFilter })
+// Multer upload middleware
+const upload = multer({ storage: storage, fileFilter: fileFilter });
+
+// POST route for uploading images to Cloudinary
+router.post('/upload', upload.array('images', 4), function (req, res) {
+  const uploadedImages = [];
+
+  // Upload each image to Cloudinary
+  const promises = req.files.map(file => {
+    return new Promise((resolve, reject) => {
+      cloudinary.uploader.upload(file.path, { resource_type: 'auto' }, (error, result) => {
+        if (error) {
+          console.error("Error uploading image to Cloudinary:", error);
+          return reject(error);
+        }
+        uploadedImages.push(result.secure_url);
+        resolve();
+      });
+    });
+  });
+
+  Promise.all(promises)
+    .then(() => {
+      // Return Cloudinary URLs of the uploaded images
+      res.json({ imageUrls: uploadedImages });
+    })
+    .catch(error => {
+      res.status(500).send("Error uploading images to Cloudinary");
+    });
+});
+
+
+
+
+// // Multer code for upload images
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, './public/images/postUploads')
+//   },
+//   filename: function (req, file, cb) {
+//     crypto.randomBytes(10, function (err, buff) {
+//       const fn = buff.toString("hex") + path.extname(file.originalname)
+//       cb(null, fn);
+//     })
+
+//   }
+// })
+
+// const upload = multer({ storage: storage, fileFilter: fileFilter })
 
 function fileFilter(req, file, cb) {
   if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
