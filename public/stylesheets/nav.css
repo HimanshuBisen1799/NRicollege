@@ -44,6 +44,7 @@ margin: 3px 0;
 #nav{
 position: relative;
 height: 7vh;
+display: none;
 }
 #nav ul {
     display: none;
