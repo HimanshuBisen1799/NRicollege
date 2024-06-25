@@ -1,10 +1,6 @@
 var mongoose = require('mongoose');
 var passportLocalMongoose = require('passport-local-mongoose');
 
-// mongoose.connect("mongodb://127.0.0.1:27017/rent");
-// mongoose.connect(process.env.MONGO_URI)
-
-
 async function connectToDatabase() {
   try {
     // Your MongoDB connection code here
@@ -15,8 +11,6 @@ async function connectToDatabase() {
 }
 
 connectToDatabase();
-
-
 
 var userSchema = mongoose.Schema({
   email: {
@@ -40,7 +34,6 @@ var userSchema = mongoose.Schema({
   },
   password: {
     type: String,
-    // required: [true,'Password is required.'],
     minlength: [4, 'Password must be at least 4 characters long.'],
   },
   number: {
@@ -61,46 +54,49 @@ var userSchema = mongoose.Schema({
   },
   posts: [
     {
-      post:{
-        type: Array,
-        default: []
-      },
       type: {
         type: String,
-        default: "",
         required: [true, 'Type of room is required.'],
       },
       city: {
         type: String,
-        default: "",
         required: [true, 'City name is required.'],
       },
-      area: {
-        required: [true, 'Area Street is required.'],
+      state: {
         type: String,
-        default: ""
+        required: [true, 'State is required.']
+      },
+      location: {
+        type: String,
+        required: [true, 'Location is required.']
+      },
+      pincode: {
+        type: Number,
+        required: [true, 'Pincode is required.']
+      },
+      area: {
+        type: String,
+        required: [true, 'Area Street is required.'],
       },
       description: {
-        required: [true, 'Description is required.'],
         type: String,
-        default: ""
+        required: [true, 'Description is required.'],
       },
       price: {
-        required: [true, 'Price is required.'],
         type: Number,
-        default: ""
+        required: [true, 'Price is required.'],
       },
       number: {
-        required: [true, 'Contact number is required.'],
         type: Number,
-        default: " "
+        required: [true, 'Contact number is required.'],
       },
       images: {
-        required: [true, 'Images is required.'],
         type: Array,
+        required: [true, 'Images are required.'],
         default: []
       }
-    }, { timestamps: true }
+    },
+    { timestamps: true }
   ],
   savePost: {
     type: Array,
@@ -108,9 +104,8 @@ var userSchema = mongoose.Schema({
   },
 }, { timestamps: true });
 
-
 userSchema.methods.getjwttoken = function () {
-  return jwt.sign({ id: this._id },"JWT_SECRET", { expiresIn: "1h" });
+  return jwt.sign({ id: this._id }, "JWT_SECRET", { expiresIn: "1h" });
 }
 
 userSchema.plugin(passportLocalMongoose);

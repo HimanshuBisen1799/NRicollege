@@ -43,7 +43,7 @@
     <!-- <% include ./navbar/nav.ejs %> -->
     <h2 class="mt-5 text-center fw-semibold">POST YOUR AD</h2>
     <form class="container mt-5 mb-5" style="width: 40vw;" action="/uploadpost" method="post" enctype="multipart/form-data">
-      <h5 class="ms-2">Type </h5>
+      <h5 class="ms-2">Type</h5>
       <select class="input-group p-2" name="type" id="">
         <option value="">Select One</option>
         <option value="Single Room">Single Room</option>
@@ -51,8 +51,8 @@
         <option value="Commercial">Commercial</option>
         <option value="Appartment">Appartment</option>
       </select>
-
-      <h5 class="mt-4 ms-2">select your city.</h5>
+    
+      <h5 class="mt-4 ms-2">Select your city</h5>
       <select class="input-group p-2" name="city" id="">
         <option value="">Select City</option>
         <option value="Bhopal">Bhopal</option>
@@ -60,19 +60,35 @@
         <option value="Indore">Indore</option>
         <option value="Sagar">Sagar</option>
       </select>
-
+    
+      <h5 class="mt-4 ms-2">State</h5>
+      <select class="input-group p-2" name="state" id="">
+        <option value="">Select State</option>
+        <option value="Madhya Pradesh">Madhya Pradesh</option>
+        <option value="Uttar Pradesh">Uttar Pradesh</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Rajasthan">Rajasthan</option>
+        <!-- Add more options as needed -->
+      </select>
+    
       <h5 class="mt-4 ms-2">Area</h5>
       <input class="input-group p-2" type="text" placeholder="Enter Address" name="area">
-
+    
+      <h5 class="mt-4 ms-2">Location</h5>
+      <input class="input-group p-2" type="text" placeholder="Enter Location" name="location">
+    
+      <h5 class="mt-4 ms-2">Pincode</h5>
+      <input class="input-group p-2" type="text" placeholder="Enter Pincode" name="pincode">
+    
       <h5 class="mt-4 ms-2">Description</h5>
       <textarea class="input-group p-2" name="description"></textarea>
-
+    
       <h5 class="mt-4 ms-2">Contact Number</h5>
       <input class="input-group p-2" type="text" placeholder="Contact Number" name="number">
-
+    
       <h5 class="mt-4 ms-2">Set Price</h5>
-      <input class="input-group p-2" type="text" placeholder="price" name="price">
-
+      <input class="input-group p-2" type="text" placeholder="Price" name="price">
+    
       <h5 class="mt-4 ms-2">Select image of your home</h5>
       <div id="img-div">
         <div class="img"><i class="ri-add-circle-line"></i><input type="file" name="images" onchange="handleImageChange(this)"></div>
@@ -80,10 +96,11 @@
         <div class="img"><i class="ri-add-circle-line"></i><input type="file" name="images" onchange="handleImageChange(this)"></div>
         <div class="img"><i class="ri-add-circle-line"></i><input type="file" name="images" onchange="handleImageChange(this)"></div>
       </div>
-
-      <button class=" mt-5 " >Post Ad</button>
-
+    
+      <button class="mt-5">Post Ad</button>
     </form>
+    
+    
 
 
     <% include ./sevice.ejs %>
