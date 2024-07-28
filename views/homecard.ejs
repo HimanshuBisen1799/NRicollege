@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Quicksand:wght@300..700&display=swap");
+
+        .raju *,
+        .raju *:before,
+        .raju *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+
+
+.raju
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  place-items: center;
+  min-height: 100vh;
+}
+
+/* Content */
+.raju
+.content {
+  padding-left: 120px;
+  color: #6f6f6fe1;
+}
+.raju
+.content h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2.5rem, 4vw, 6rem);
+  font-weight: 700;
+  background: -webkit-linear-gradient(0deg, #f76591, #ffc16f);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+  margin-bottom: 36px;
+  padding-left: 10px;
+}
+.raju
+.content p {
+  font-size: clamp(0.9rem, 4vw, 1.2rem);
+  line-height: 1.6;
+  padding-right: 100px;
+}
+.raju
+.btn {
+  background-color: #87f765;
+  background-image: linear-gradient(-180deg, #8ce724, #57aa5b);
+  font-size: clamp(0.8rem, 8vw, 0.9rem);
+  font-weight: 600;
+  color: #fff;
+  width: max-content;
+  outline: 0;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  margin-top: 26px;
+  text-align: center;
+  transform: scale(1);
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: auto;
+}
+.raju
+.btn:hover {
+  box-shadow: 0 4px 10px rgba(247, 101, 145, 0.5);
+  transform: scale(0.98);
+}
+
+/* Stacked Cards */
+.raju
+.stack {
+  position: relative;
+}
+.raju
+.card {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 500px;
+  border-radius: 2rem;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25),
+    0 15px 20px 0 rgba(0, 0, 0, 0.125);
+  transition: transform 0.6s;
+  user-select: none;
+}
+.raju
+.card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.raju
+.card:nth-last-child(n + 5) {
+  --x: calc(-50% + 90px);
+  transform: translate(var(--x), -50%) scale(0.85);
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.01);
+}
+.raju
+.card:nth-last-child(4) {
+  --x: calc(-50% + 60px);
+  transform: translate(var(--x), -50%) scale(0.9);
+}
+.raju
+.card:nth-last-child(3) {
+  --x: calc(-50% + 30px);
+  transform: translate(var(--x), -50%) scale(0.95);
+}
+.raju
+.card:nth-last-child(2) {
+  --x: calc(-50%);
+  transform: translate(var(--x), -50%) scale(1);
+}
+.raju
+.card:nth-last-child(1) {
+  --x: calc(-50% - 30px);
+  transform: translate(var(--x), -50%) scale(1.05);
+}
+.raju
+.card:nth-last-child(1) img {
+  box-shadow: 0 1px 5px 5px rgba(255, 193, 111, 0.5);
+}
+.raju
+.swap {
+  animation: swap 1.3s ease-out forwards;
+}
+
+@keyframes swap {
+  30% {
+    transform: translate(calc(var(--x) - 250px), -50%) scale(0.85) rotate(-5deg)
+      rotateY(65deg);
+  }
+  100% {
+    transform: translate(calc(var(--x) - 30px), -50%) scale(0.5);
+    z-index: -1;
+  }
+}
+
+/* Media queries for keyframes */
+
+@media (max-width: 1200px) {
+  @keyframes swap {
+    30% {
+      transform: translate(calc(var(--x) - 200px), -50%) scale(0.85)
+        rotate(-5deg) rotateY(65deg);
+    }
+
+    100% {
+      transform: translate(calc(var(--x) - 30px), -50%) scale(0.5);
+      z-index: -1;
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  @keyframes swap {
+    30% {
+      transform: translate(calc(var(--x) - 150px), -50%) scale(0.85)
+        rotate(-5deg) rotateY(65deg);
+    }
+
+    100% {
+      transform: translate(calc(var(--x) - 30px), -50%) scale(0.5);
+      z-index: -1;
+    }
+  }
+}
+
+/* Media queries for other classes */
+
+@media (max-width: 1200px) {
+  
+    .raju  .content {
+    padding-left: 80px;
+  }
+
+  .raju .content p {
+    padding-right: 40px;
+  }
+
+  .raju .card {
+    width: 250px;
+    height: 380px;
+  }
+}
+
+@media (max-width: 1050px) {
+    .raju .content {
+    padding-left: 60px;
+  }
+
+  .raju .content p {
+    line-height: 1.5;
+  }
+
+  .raju .card {
+    width: 220px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 990px) {
+    .raju .content p {
+    padding-right: 0;
+  }
+
+  .raju .card {
+    width: 200px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 950px) {
+    .raju main {
+    grid-template-columns: 1fr;
+    grid-template-rows: 4fr 3fr;
+    grid-template-areas:
+      "stacked"
+      "content";
+  }
+
+  .raju .content {
+    grid-area: content;
+    text-align: center;
+    padding: 0 90px;
+  }
+
+  .raju .btn {
+    margin-bottom: 30px;
+  }
+
+  .raju .stack {
+    grid-area: stacked;
+  }
+}
+
+@media (max-width: 650px) {
+    .raju main {
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .raju .content {
+    padding: 0 50px;
+  }
+
+  .raju .content h1 {
+    padding-left: 0;
+  }
+
+  .raju .btn {
+    padding: 8px 16px;
+  }
+
+  .raju .card {
+    width: 180px;
+    height: 260px;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="raju">
+        <main>
+            <div class="content">
+              <h1>Rent Room Hub</h1>
+              <p>
+                Have an available room in your property? List it with Rent Room Hub and connect with potential tenants quickly and effortlessly. Looking for a place to live? Search through our extensive listings to find the perfect room that meets your preferences and budget. Communicate directly with property owners or potential tenants to discuss details, negotiate terms, and finalize agreements. Discover more with Rent Room Hub today. 
+                
+              </p>
+              <button class="btn">Explore More</button>
+            </div>
+      
+            <div class="stack">
+             
+              <div class="card">
+                <img
+                  src="../logo/image slide/roomimagee2.jpg"
+                  alt="" />
+              </div>
+              <div class="card">
+                <img
+                  src="../logo/image slide/roomimagee3.jpg"
+                  alt="" />
+                  
+              </div>
+              <div class="card">
+                <img
+                  src="../logo/image slide/roomimagee1.jpg"
+                  alt="" />
+              </div>
+             
+             
+            
+              <!-- <div class="card">
+                <img
+                  src="https://images.unsplash.com/photo-1564273795917-fe399b763988?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="" />
+              </div> -->
+              
+            </div>
+          </main>
+    </div>
+   
+      <script>
+        const stack = document.querySelector(".stack");
+const cards = Array.from(stack.children)
+  .reverse()
+  .filter((child) => child.classList.contains("card"));
+
+cards.forEach((card) => stack.appendChild(card));
+
+function moveCard() {
+  const lastCard = stack.lastElementChild;
+  if (lastCard.classList.contains("card")) {
+    lastCard.classList.add("swap");
+
+    setTimeout(() => {
+      lastCard.classList.remove("swap");
+      stack.insertBefore(lastCard, stack.firstElementChild);
+    }, 1200);
+  }
+}
+
+let autoplayInterval = setInterval(moveCard, 4000);
+
+stack.addEventListener("click", function (e) {
+  const card = e.target.closest(".card");
+  if (card && card === stack.lastElementChild) {
+    card.classList.add("swap");
+
+    setTimeout(() => {
+      card.classList.remove("swap");
+      stack.insertBefore(card, stack.firstElementChild);
+    }, 1200);
+  }
+});
+
+      </script>
+</body>
+</html>
