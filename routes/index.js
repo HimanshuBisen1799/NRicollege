@@ -1,20 +1,18 @@
 const express = require('express');
 const router = express.Router();
-
-const multer = require("multer");
-const crypto = require("crypto");
-const passport = require("passport")
-const userModel = require("./users.js");
+const multer = require('multer');
+const crypto = require('crypto');
+const passport = require('passport');
+const userModel = require('./users.js');
 const fs = require('fs');
-const path = require("path");
+const path = require('path');
 const cookieParser = require('cookie-parser');
-// const sendtoken = require("../utils/SendToken.js");
-
-const localStrategy = require("passport-local");
-passport.use(new localStrategy(userModel.authenticate()));
-
+const localStrategy = require('passport-local');
 const cloudinary = require('cloudinary').v2;
-const sendtoken = require("../utils/SendToken.js");
+const sendtoken = require('../utils/SendToken.js');
+
+// Configure Passport.js
+passport.use(new localStrategy(userModel.authenticate()));
 
 // Configure Cloudinary
 cloudinary.config({
@@ -26,21 +24,28 @@ cloudinary.config({
 // Multer configuration for uploading images
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './public/images/postUploads')
+    cb(null, './public/images/postUploads');
   },
   filename: function (req, file, cb) {
     crypto.randomBytes(10, function (err, buff) {
-      const fn = buff.toString("hex") + path.extname(file.originalname)
+      const fn = buff.toString('hex') + path.extname(file.originalname);
       cb(null, fn);
-    })
+    });
   }
 });
 
-// Multer upload middleware
+function fileFilter(req, file, cb) {
+  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
+    cb(null, true);
+  } else {
+    cb(new Error('File format should be PNG, JPG, or JPEG'), false);
+  }
+}
+
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 // POST route for uploading images to Cloudinary
-router.post('/uploadpost', upload.array('images', 4), async function (req, res) {
+router.post('/uploadpost', isLoggedIn, upload.array('images', 4), async function (req, res) {
   const { type, city, state, location, pincode, area, description, number, price } = req.body;
   
   try {
@@ -50,7 +55,7 @@ router.post('/uploadpost', upload.array('images', 4), async function (req, res) 
       return new Promise((resolve, reject) => {
         cloudinary.uploader.upload(file.path, { resource_type: 'auto' }, (error, result) => {
           if (error) {
-            console.error("Error uploading image to Cloudinary:", error);
+            console.error('Error uploading image to Cloudinary:', error);
             return reject(error);
           }
           uploadedImages.push(result.secure_url);
@@ -61,7 +66,7 @@ router.post('/uploadpost', upload.array('images', 4), async function (req, res) 
   
     await Promise.all(promises);
   
-    const user = await User.findById(req.user._id);  // Assuming you have a logged-in user
+    const user = await userModel.findById(req.user._id);
   
     const newPost = {
       type,
@@ -79,44 +84,16 @@ router.post('/uploadpost', upload.array('images', 4), async function (req, res) 
     user.posts.push(newPost);
     await user.save();
   
-    res.status(200).json({ message: "Post uploaded successfully", post: newPost });
+    res.status(200).json({ message: 'Post uploaded successfully', post: newPost });
   } catch (error) {
-    console.error("Error uploading post:", error);
-    res.status(500).send("Error uploading post");
+    console.error('Error uploading post:', error);
+    res.status(500).send('Error uploading post');
   }
 });
 
-
-
-
-// // Multer code for upload images
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, './public/images/postUploads')
-//   },
-//   filename: function (req, file, cb) {
-//     crypto.randomBytes(10, function (err, buff) {
-//       const fn = buff.toString("hex") + path.extname(file.originalname)
-//       cb(null, fn);
-//     })
-
-//   }
-// })
-
-// const upload = multer({ storage: storage, fileFilter: fileFilter })
-
-function fileFilter(req, file, cb) {
-  if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
-    cb(null, true)
-  }
-  else {
-    cb(new Error('file formate should be png,jpg,jpeg'), false)
-  }
-}
-
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('signin',);
+  res.render('index1');
 });
 
 // Register user route
@@ -125,28 +102,29 @@ router.post('/register', function (req, res, next) {
     email: req.body.email,
     username: req.body.username,
     number: req.body.number,
-  })
+  });
+  
   userModel.register(user, req.body.password)
     .then(function (u) {
       passport.authenticate('local')(req, res, function () {
-        res.redirect("/index");
-      })
+        res.redirect('/index');
+      });
     })
     .catch(function (e) {
       res.send(e);
-    })
+    });
 });
 
 // Login route
 router.get('/login', function (req, res, next) {
-  res.render('login',);
+  res.render('login');
 });
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/index',
   failureRedirect: '/'
 }), function (req, res, next) {
-  sendtoken(req.user, 200, res)
+  sendtoken(req.user, 200, res);
 });
 
 // Logout route
@@ -179,12 +157,12 @@ router.get('/listroom', isLoggedIn, async function (req, res, next) {
 });
 
 // Save ad form
-router.post("/uploadpost", isLoggedIn, upload.array("images", 4), async (req, res) => {
+router.post('/uploadpost', isLoggedIn, upload.array('images', 4), async (req, res) => {
   try {
     const loggedInUser = await userModel.findOne({ username: req.session.passport.user });
 
     if (!loggedInUser) {
-      return res.status(404).send("User not found");
+      return res.status(404).send('User not found');
     }
 
     const images = req.files.map(file => file.filename);
@@ -202,35 +180,35 @@ router.post("/uploadpost", isLoggedIn, upload.array("images", 4), async (req, re
     loggedInUser.posts.push(newPost);
     await loggedInUser.save();
 
-    res.render("profile", { loggedInUser });
+    res.render('profile', { loggedInUser });
   } catch (error) {
-    console.error("Error uploading post:", error);
-    res.status(500).send("An error occurred while uploading the post.");
+    console.error('Error uploading post:', error);
+    res.status(500).send('An error occurred while uploading the post.');
   }
 });
 
 // Delete ad
-router.get("/delete/:postId", isLoggedIn, async (req, res) => {
+router.get('/delete/:postId', isLoggedIn, async (req, res) => {
   try {
     const loggedInUser = await userModel.findOne({ username: req.session.passport.user });
     if (!loggedInUser) {
-      return res.status(404).send("User not found");
+      return res.status(404).send('User not found');
     }
     const postIdToDelete = req.params.postId;
 
     // Find the index of the post in the user's posts array
     const postIndex = loggedInUser.posts.findIndex(post => post._id.toString() === postIdToDelete);
     if (postIndex === -1) {
-      return res.status(404).send("Post not found");
+      return res.status(404).send('Post not found');
     }
     // Remove the post from the array
     loggedInUser.posts.splice(postIndex, 1);
     await loggedInUser.save();
-    res.render("profile", { loggedInUser });
+    res.render('profile', { loggedInUser });
 
   } catch (error) {
-    console.error("Error deleting post:", error);
-    res.status(500).send("An error occurred while deleting the post.");
+    console.error('Error deleting post:', error);
+    res.status(500).send('An error occurred while deleting the post.');
   }
 });
 
@@ -243,7 +221,7 @@ router.get('/profile', isLoggedIn, async function (req, res, next) {
 router.get('/findroom', isLoggedIn, async function (req, res, next) {
   const loggedInUser = await userModel.findOne({ username: req.session.passport.user });
   const allUsers = await userModel.find();
-  const allPosts = await userModel.find({}, 'username posts')
+  const allPosts = await userModel.find({}, 'username posts');
 
   res.render('findroom', { loggedInUser, allUsers, allPosts });
 });
@@ -265,81 +243,9 @@ router.get('/card/:postId', async (req, res) => {
       return res.status(404).json({ message: 'Post not found' });
     }
 
-    res.render("card", { post, loggedInUser });
+    res.render('card', { post, loggedInUser });
   } catch (error) {
     console.error('Error fetching post:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
-// Route to get all saved posts of the logged-in user
-router.get('/save', isLoggedIn, async (req, res) => {
-  try {
-    const loggedInUser = await userModel.findOne({ username: req.session.passport.user });
-
-    // Get the IDs of bookmarked posts from the logged-in user
-    const bookmarkedPostIds = loggedInUser.savePost;
-
-    // Find the posts using the IDs
-    const savedPosts = await userModel.find({ 'posts._id': { $in: bookmarkedPostIds } }, 'posts');
-
-    res.render('save', { savedPosts, loggedInUser });
-  } catch (error) {
-    console.error('Error fetching saved posts:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
-router.get('/save/:id', async (req, res) => {
-  try {
-    const loggedInUser = await userModel.findOne({ username: req.session.passport.user });
-    const postId = req.params.id;
-
-    const bookmarkIndex = loggedInUser.savePost.indexOf(postId);
-
-    if (bookmarkIndex === -1) {
-      loggedInUser.savePost.push(postId);
-    } else {
-      loggedInUser.savePost.splice(bookmarkIndex, 1);
-    }
-
-    await loggedInUser.save();
-
-    // Retrieve the saved posts after updating the user
-    const savedPosts = await userModel.find({ 'posts._id': { $in: loggedInUser.savePost } }, 'posts');
-
-    res.render("save", { loggedInUser, savedPosts });
-  } catch (error) {
-    console.error('Error fetching post:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
-router.get('/remove-saved/:id', isLoggedIn, async (req, res) => {
-  try {
-    const loggedInUser = await userModel.findOne({ username: req.session.passport.user });
-    const postId = req.params.id;
-
-    const bookmarkIndex = loggedInUser.savePost.indexOf(postId);
-
-    if (bookmarkIndex !== -1) {
-      // Remove the post from the saved list
-      loggedInUser.savePost.splice(bookmarkIndex, 1);
-
-      // Save the updated user
-      await loggedInUser.save();
-
-      // Retrieve the remaining saved posts after removing the specified post
-      const savedPosts = await userModel.find({ 'posts._id': { $in: loggedInUser.savePost } }, 'posts');
-
-      // Render the 'save' template with the updated data
-      res.render('save', { savedPosts, loggedInUser });
-    } else {
-      // If the post was not found in the saved list, handle accordingly (redirect or show a message)
-      res.redirect('/save'); // Redirect to the save route or handle as needed
-    }
-  } catch (error) {
-    console.error('Error removing saved post:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });

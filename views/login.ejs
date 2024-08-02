@@ -1,157 +1,45 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>
-    rental
-  </title>
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel='stylesheet' href='/stylesheets/login.css' />
-    <link rel="shortcut icon" href="../logo/logo.jpg" type="image/x-icon">
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <title>Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f7f7f7;
+    }
+    .login-form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+  </style>
 </head>
-<style>
-  form{
-      margin-left: 5vw;
-  }
- input{
-  width: 35vw;
-  height: 8vh;
-  border-radius: 15px;
-  padding: 0 1vw;
-  color: black;
-  font-size: 1.5vw;
-  border: 1px solid #000;
- }
- h5{
-  margin-left: 23vw;
- }
- .btn{
-  margin-top: 43vw;
-   margin-left: 10vw;
-   background-color: rgb(90, 186, 199);
-   padding: 1vw 1vw;
-   border-radius: 15px;
- }
- .left{
-  background-color: rgba(92, 221, 131, 0.915);
-  height: 100%;
- 
- }
- .colum{
-  height: 14vw;
-  width: 14vw;
-  background-color: #fff;
-  border-radius: 100%;
-  position: relative;
-  border: 2px solid #000;
-  overflow: hidden;
- }
- .colum>img{
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
- }
- #main{
-  width: 100%;
-  flex-direction: row;
-  height: 100vh;
- 
- }
- .right{
-  width: 100%;
-  margin-left: 0vw; 
-  
-}
- @media screen and (max-width: 980px) {
-#main{
-  flex-direction: column;
-  height: 32vh;
-  /* overflow-x: auto; */
-
-}
-input{
-  width: 35vw;
-  height: 2vh;
-}
-.left{
-  width: 100vh;
-}
-.right{
-  width: 49%;
- height: max-content;
-  /* background-color: aqua; */
-  /* padding: 0.6vw; */
-  text-align: center;
-  margin-left: 40vw;
-}
-
-}
-@media screen and (max-width: 980px) {
-  form {
-    margin-left: 0;
-  }
-
-  input {
-    width: 80vw;
-    height: 4.3vh;
-  }
-
-  h5 {
-    margin-left: 0;
-    text-align: center;
-  }
-
-  .btn {
-  
-    margin-left: 0;
-    
-  }
-
-  .left {
-    width: 100%;
-  }
-
-  .right {
-    width: 100%;
-    margin-left: 0;
-    text-align: center;
-  }
-}
-
-</style>
 <body>
-
-  <div id="main" class="d-flex w-100">
-    <div class="left d-flex flex-column align-items-center">
-        <div class="mt-5"></div>
-        <div class="colum mt-5">
-            <img src="https://i.pinimg.com/564x/b3/78/60/b378603d05990193325f39834af4d681.jpg" alt="">
-        </div>
-        <h3 class="mt-4">This Rental</h3>
-        <h6 class="mt-4 text text-center ">This rental website provides an interface where <br>
-            you can easily find rental <br>
-            rooms in different cities.</h6>
-    </div>
-    <div class="right p-6">
-        <h2 class="text-center fw-semibold">Login </h2>
-        <form action="/login" method="post" class="mt-4 mb-3  ">
-            <input type="text" placeholder="Username" name="username">
-            <input type="password" placeholder="Password" name="password">
-            <br> 
-            <button class="btn mt-5 " >Let's Find Rooms</button>
-        </form>
-        <h5><a class="text-body text-decoration-none   " style="font-size: 3vh ;" href="/">New user register first</a></h5>
-    </div>
-</div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-    crossorigin="anonymous"></script>
-    <script src="../javascripts/nav.js"></script>
-   
+  <div class="login-form">
+    <form action="/login" method="post">
+      <h2 class="text-center">Login</h2>
+      <div class="form-group">
+        <input type="text" name="username" class="form-control" placeholder="Username" required="required">
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" class="form-control" placeholder="Password" required="required">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+      </div>
+      <div class="clearfix">
+        <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
+        <a href="#" class="float-right">Forgot Password?</a>
+      </div>
+    </form>
+    <p class="text-center"><a href="/register">Create an Account</a></p>
+  </div>
 </body>
-
 </html>

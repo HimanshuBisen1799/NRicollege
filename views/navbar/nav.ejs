@@ -102,10 +102,30 @@
          </li>
          <li class="nav-item">
            <a class="nav-link" href="/listroom">List ads</a>
-         </li>
-           <li class="nav-item">
-             <a class="nav-link" href="/profile"><%= loggedInUser.username %></a>
-           </li>
+           <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/index">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/findroom">Find Rooms</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/listroom">List Ads</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/save">Save Ads</a>
+            </li>
+            <% if (loggedInUser) { %>
+              <li class="nav-item">
+                <a class="nav-link fw-semibold" href="/profile">Hello <%= loggedInUser.username %></a>
+              </li>
+            <% } else { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+            <% } %>
+          </ul>
+          
        </ul>
      </div>
      <script src="../../javascripts/nav.js">
