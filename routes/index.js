@@ -95,7 +95,9 @@ router.post('/uploadpost', isLoggedIn, upload.array('images', 4), async function
 router.get('/', function (req, res, next) {
   res.render('index1');
 });
-
+router.get('/signin', function (req, res, next) {
+  res.render('signin');
+});
 // Register user route
 router.post('/register', function (req, res, next) {
   var user = new userModel({

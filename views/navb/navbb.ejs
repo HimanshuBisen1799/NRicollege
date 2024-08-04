@@ -63,7 +63,10 @@ body {
   background-color: var(--body-color);
   color: var(--text-color);
 }
-
+#logo-mobile{
+  height: 4.6vh;
+  width: min-content;
+}
 ul {
   list-style: none;
 }
@@ -98,7 +101,15 @@ img {
   max-width: 368px;
   margin-left: 1rem;
   margin-right: 1rem;
+  position: relative;
 }
+.nav__logo{
+                  position: absolute;
+                  top: 0%!important;
+                  left: 0%;
+                  size: 1vw;
+                  z-index: 999999;
+                }
 
 /*=============== HEADER ===============*/
 .header {
@@ -287,8 +298,9 @@ img {
         <!--=============== HEADER ===============-->
         <header class="header" id="header">
             <nav class="nav container">
-                <a href="#" class="nav__logo">RENTROOMHUB</a>
-
+                <!-- <i href="#" class="nav__logo">RENTROOMHUB</i> -->
+                <img  id="logo-mobile" class="nav_logo" src="../../logo/logo.jpg" alt="">
+              
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
                         <li class="nav__item">
