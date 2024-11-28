@@ -158,6 +158,7 @@ router.get('/listroom', isLoggedIn, async function (req, res, next) {
   res.render('listroom', { loggedInUser });
 });
 
+
 // Save ad form
 router.post('/uploadpost', isLoggedIn, upload.array('images', 4), async (req, res) => {
   try {

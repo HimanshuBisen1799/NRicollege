@@ -18,29 +18,28 @@
 <body>
   <% include ./navb/navbb.ejs %>
   <div id="main">
-    <div id="nav" class="nav-ram">
+    <div id="nav">
       <i id="mobile-menu-button" class="ri-menu-line"></i>
-       <img  id="logo" src="/images/postUploads/logo/logo.jpg" alt="">
-      
-     <ul class="nav justify-content-end">
-       <li class="nav-item">
-         <a class="nav-link active" aria-current="page" href="/index">Home</a>
-       </li>
-       <li class="nav-item">
-         <a class="nav-link" href="/findroom">Find Rooms</a>
-       </li>
-       <li class="nav-item">
-         <a class="nav-link" href="/listroom">List Ads</a>
-       </li>
-       <li class="nav-item">
-         <a class="nav-link " href="/save">Save Ads</a>
-       </li>
-       <li class="nav-item">
-         <a class="nav-link fw-semibold" href="/profile">Hello <%= loggedInUser.username%></a>
-       </li>
+      <img id="logo" src="/images/postUploads/logo/logo.jpg" alt="">
 
-     </ul>
-   </div>
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/index">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/findroom">Find Rooms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/listroom">List Ads</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/save">Save Ads</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" href="/profile">Hello <%= loggedInUser.username%></a>
+        </li>
+      </ul>
+    </div>
 
     <h2 class="fw-semibold text-center opacity-75 mb-5 mt-5">Here is all your saved ads. </h2>
 
@@ -98,3 +97,4 @@
 </body>
 
 </html>
+

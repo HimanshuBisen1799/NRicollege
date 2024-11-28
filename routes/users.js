@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 var passportLocalMongoose = require('passport-local-mongoose');
+var jwt = require('jsonwebtoken');  // Ensure jwt is required for token generation
 
 async function connectToDatabase() {
   try {
-    // Your MongoDB connection code here
     mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
@@ -12,13 +12,52 @@ async function connectToDatabase() {
 
 connectToDatabase();
 
-var userSchema = mongoose.Schema({
+var postSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    required: [true, 'Type of room is required.'],
+    enum: ['Single Room', 'Flat', 'Commercial', 'Apartment']
+  },
+  city: {
+    type: String,
+    required: [true, 'City name is required.'],
+    enum: ['Bhopal', 'Jabalpur', 'Indore', 'Sagar']
+  },
+  area: {
+    type: String,
+    required: [true, 'Area is required.'],
+  },
+  description: {
+    type: String,
+    required: [true, 'Description is required.'],
+  },
+  price: {
+    type: Number,
+    required: [true, 'Price is required.'],
+    min: 0
+  },
+  number: {
+    type: Number,
+    required: [true, 'Contact number is required.'],
+  },
+  images: {
+    type: [String],  // Array to store paths or URLs of uploaded images
+    required: [true, 'Images are required.'],
+    validate: {
+      validator: function (arr) {
+        return arr.length > 0;
+      },
+      message: 'At least one image is required.'
+    }
+  }
+}, { timestamps: true });
+
+var userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
     validate: {
       validator: function (value) {
-        // Regular expression to validate email format
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(value);
       },
@@ -38,7 +77,7 @@ var userSchema = mongoose.Schema({
   },
   number: {
     type: Number,
-    required: [true, 'Contact Number is required.'],
+    required: [true, 'Contact number is required.'],
   },
   city: {
     type: String,
@@ -52,56 +91,11 @@ var userSchema = mongoose.Schema({
     type: String,
     default: ""
   },
-  posts: [
-    {
-      type: {
-        type: String,
-        required: [true, 'Type of room is required.'],
-      },
-      city: {
-        type: String,
-        required: [true, 'City name is required.'],
-      },
-      state: {
-        type: String,
-        required: [true, 'State is required.']
-      },
-      location: {
-        type: String,
-        required: [true, 'Location is required.']
-      },
-      pincode: {
-        type: Number,
-        required: [true, 'Pincode is required.']
-      },
-      area: {
-        type: String,
-        required: [true, 'Area Street is required.'],
-      },
-      description: {
-        type: String,
-        required: [true, 'Description is required.'],
-      },
-      price: {
-        type: Number,
-        required: [true, 'Price is required.'],
-      },
-      number: {
-        type: Number,
-        required: [true, 'Contact number is required.'],
-      },
-      images: {
-        type: Array,
-        required: [true, 'Images are required.'],
-        default: []
-      }
-    },
-    { timestamps: true }
-  ],
+  posts: [postSchema],  // Nested subdocument for posts
   savePost: {
     type: Array,
     default: []
-  },
+  }
 }, { timestamps: true });
 
 userSchema.methods.getjwttoken = function () {
@@ -109,4 +103,5 @@ userSchema.methods.getjwttoken = function () {
 }
 
 userSchema.plugin(passportLocalMongoose);
-module.exports = mongoose.model('user', userSchema);
+
+module.exports = mongoose.model('User', userSchema);
